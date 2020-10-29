@@ -1,0 +1,35 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+    title= "Book trading club"
+    link(href="/public/main-style.css", rel="stylesheet" type="text/css")
+    link(href="/public/top-style.css", rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet")
+  include top.pug
+  div.container-fluid#main-info
+    div#list-name
+      p Available books
+    div.container-fluid#table
+      table(class='table t-pag t-pag-5' id='main-table')
+        thead(id='table-head')
+          tr
+            th(width='65%') Book
+            th(width='15%')
+            th(width='20%') Owner
+        tbody(id='book-table')
+          each val in booksColl
+            tr
+              td= val.name
+                if authenticated
+                  td
+                    a(href= '/book/' + val.id)
+                      button(type="button" id=val.id class="btn btn-primary" class="swap-btn") Offer a swap
+                else 
+                  td
+              td= val.username
+  
+  script(src="/public/main-script.js")

@@ -1,0 +1,47 @@
+#login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login-wrapper h4 {
+  font-size: 1.4em;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  margin-top: 2em;
+}
+#login-wrapper form {
+  background-color: #eed9ee;
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: 1em;
+  margin-top: 2em;
+  width: 20em;
+  font-family: "Roboto", sans-serif;
+}
+#login-y-n a {
+  text-decoration: none;
+}
+#submit-login, #cancel-login {
+  margin-top: 1em !important;
+  text-align: center;
+  background-color: #c580c5 !important;
+  border-color: #c580c5 !important;
+  color: black !important;
+  margin: auto 0.4em;
+  width: 5em !important;
+}
+#login-y-n {
+  display: flex;
+  justify-content: space-evenly;
+}
+#login-wrapper input {
+  width: 100%;
+  border: 1px solid #8b008b;
+  border-radius: 3px;
+}
+#login-wrapper {
+  font-size: 1.1em;
+  font-family: "Roboto", sans-serif;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}

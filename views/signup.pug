@@ -1,0 +1,30 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+    title= "Book trading club"
+    link(href="/public/signup-style.css", rel="stylesheet" type="text/css")
+    link(href="/public/top-style.css", rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet")
+  include top.pug
+  div.container-fluid#sign-up-wrapper
+    h4 Sign up
+    form(action="/api/signup" method="POST")
+      label(for="username") Username
+      br
+      input(type="text" id="sign-up-username" name="username" title="6 letters and/or digits min" required="true" pattern="[A-Za-z0-9_]{6,}" minlength="6" oninput="checkUsername()")
+      br
+      br
+      label(for="password") Password
+      br
+      input(type="password" id="sign-up-password" name="password" title="8 letters and/or digits min" required="true" pattern="[A-Za-z0-9_]{8,}" minlength="8")
+      br
+      div#sign-up-y-n
+        input(type="submit" class="btn btn-primary" id="sign-up-submit-login" value="Sign up" disabled)
+        a(href= '/')
+          button(type="button" id="sign-up-cancel-login" class="btn btn-primary") Cancel
+  
+  script(src="/public/signup-script.js")

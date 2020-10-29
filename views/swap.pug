@@ -1,0 +1,35 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+    title= "Book trading club"
+    link(href="/public/swap-style.css", rel="stylesheet" type="text/css")
+    link(href="/public/top-style.css", rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet")
+  include top.pug
+  - var path = '/api/' + bookId + '/swap';
+  div.container-fluid#swap-wrapper
+    p#swap-title You want to obtain 
+      span#book-to-obtain-name #{bookName}
+    if usrBooks.length
+      div#swap-form-wrapper
+        p#book-to-obtain-id #{bookId}
+        p#swap-info Choose which book you will offer in return:
+        form(id='swap-form' action=path method='POST')
+          each val in usrBooks
+            label(for= val.id class='choice-cont') #{val.name}
+              input(type='radio' id= val._id name='booktooffer' value= val._id class='swap-choice' oninput="checkRequest()")
+              span.checkmark
+          div#swap-btns
+            input(type="submit" value="Submit" id='submit-swap' class="btn btn-primary" disabled)
+            a(href= '/')
+              button(type="button" id='cancel-swap' class="btn btn-primary") Cancel
+    else
+      div#no-swap
+        p You need to have at least one book to offer it in return. 
+          a(href='/profile') View your profile
+  
+  script(src="/public/swap-script.js")

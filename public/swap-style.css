@@ -1,0 +1,100 @@
+#swap-title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+#swap-info {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3em;
+}
+#swap-wrapper {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#swap-form label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+}
+#submit-swap, #cancel-swap {
+  background-color: #c580c5 !important;
+  border-color: #c580c5 !important;
+  color: black !important;
+  margin: auto 0.4em;
+}
+#swap-btns a {
+  text-decoration: none;
+}
+#swap-btns {
+  margin-top: 1em;
+  text-align: center;
+}
+#swap-form-wrapper {
+  background-color: #eed9ee;
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: 1em;
+  margin-top: 2em;
+}
+#no-swap {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  background-color: #eed9ee;
+  padding: 1em 1em 0.2em 1em;
+  border: 0px solid transparent;
+  border-radius: 1em;
+  margin-top: 20vh;
+  color: firebrick;
+}
+#no-swap a {
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+}
+.choice-cont {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.choice-cont input {
+  position: absolute;
+  left: 11px;
+  top: 23px;
+  opacity: 0;
+  cursor: pointer;
+  height: 1;
+  width: 1;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  border: 2px solid #c580c5;
+}
+.choice-cont:hover input ~ .checkmark {
+  background-color: #d1bcd1;
+}
+.choice-cont input:checked ~ .checkmark {
+  background-color: #c580c5;
+}
+#book-to-obtain-id {
+  display: none;
+}
+#book-to-obtain-name {
+  background-color: #b966b9;
+  padding: 0.2em;
+  border: 0px solid transparent;
+  border-radius: 5px;
+}

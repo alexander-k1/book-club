@@ -1,0 +1,67 @@
+#sign-info {
+  background-color: #8B008B;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+#site-name p {
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  font-size: 2em;
+}
+#login-signup a, #logout-profile a {
+  color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  #top {
+    flex-direction: row !important;
+    justify-content: space-between;
+  }
+  #site-name {
+    padding-top: 1em;
+  }
+  #auth {
+    padding-bottom: 0 !important;
+  }
+  #logout-profile {
+    flex-direction: row !important;
+  }
+ }
+#log-in {
+  background-color: white;
+  border: none;
+  color: #8B008B;
+  margin-left: 0.5em;
+  font-size: 1em;
+}
+#top {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#auth {
+  padding-bottom: 0.5em;
+  font-size: 1.2em;
+}
+#logout-profile a {
+  margin: 0 0.4em;
+}
+#logout-profile {
+  display: flex;
+  flex-direction: column;
+}
+#logout-profile p{
+  margin: 0 2.4em;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: white;
+  color: #8B008B;
+  padding: 0 0.2em;
+  border: 0px solid transparent;
+  border-radius: 5px;
+}
+#login-link {
+  text-decoration: none;
+}
+#signup-link {
+  margin-left: 1em;
+}

@@ -1,0 +1,28 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+    title= "Book trading club"
+    link(href="/public/login-style.css", rel="stylesheet" type="text/css")
+    link(href="/public/top-style.css", rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet")
+  include top.pug
+  div.container-fluid#login-wrapper
+    h4 Login
+    form(action="/api/login" method="POST")
+      label(for="username") Username
+      br
+      input(type="text" id="username" name="username" required="true" pattern="[A-Za-z0-9_]{6,}" minlength="6")
+      br
+      br
+      label(for="userpassword") Password
+      br
+      input(type="password" id="userpassword" name="password" required="true" pattern="[A-Za-z0-9_]{8,}" minlength="8")
+      br
+      div#login-y-n
+        input(type="submit" class="btn btn-primary" id="submit-login" value="Log in")
+        a(href= '/')
+          button(type="button" id="cancel-login" class="btn btn-primary") Cancel

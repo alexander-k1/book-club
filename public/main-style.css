@@ -1,0 +1,30 @@
+#main-info {
+  text-align: center;
+}
+#list-name {
+  margin: 0.8em 0;
+}
+#list-name p {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+#table-head {
+  background-image: linear-gradient(to right, #b966b9, #cb8ccb);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+tr:nth-child(even) {
+  background-color: #eed9ee;
+}
+.table td, .table th {
+  text-align: left;
+}
+.table td {
+  font-family: 'Roboto', sans-serif;
+}
+.swap-btn {
+  background-color: #c580c5 !important;
+  border-color: #c580c5 !important;
+  color: black !important;
+}

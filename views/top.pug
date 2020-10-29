@@ -1,0 +1,35 @@
+body
+  //- var authenticated = true;
+  //- var currentPage = '/';
+  //- var usrName = 'JohnDoe';
+  //- var booksObj = [{username: "user1", name: "name1", id:'1'}, {username: "user2", name: "name2", id:'2'}, {username: "user1", name: "name1", id:'3'}, {username: "user2", name: "name2", id:'4'}, {username: "user1", name: "name5", id:'5'}, {username: "user2", name: "name6", id:'6'}, {username: "user1", name: "name7", id:'7'}, {username: "user2", name: "name8", id:'8'}, {username: "user1", name: "name9", id:'9'}, {username: "user2", name: "name10", id:'10'}, {username: "user1", name: "name11", id:'11'}, {username: "user2", name: "name12", id:'12'}];
+  div.container-fluid#sign-info
+    div.container-fluid#top
+      div#site-name
+        p BOOK TRADING CLUB
+      div#auth
+        if authenticated
+          div#logout-profile
+            p#currentUsrName Hello, #{usrName}!
+            if currentPage == '/profile' 
+              a(href='/') Main page
+            else if currentPage == '/book'
+              a(href='/') Main page
+              a(href='/profile') Profile
+            else
+              a(href='/profile') Profile
+            a(href='/api/logout') Log out
+        else
+          div#login-signup
+            case currentPage
+              when '/'
+                a(href='/signup' id="signup-link") Sign up
+                a(href="/login" id="login-link")
+                  button(type="button" class="btn btn-primary" id="log-in") Log in
+              when '/signup'
+                a(href='/') Main page
+                a(href="/login" id="login-link")
+                  button(type="button" class="btn btn-primary" id="log-in") Log in
+              when '/login'
+                a(href='/') Main page
+                a(href="/signup" id="signup-link") Sign up

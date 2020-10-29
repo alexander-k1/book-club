@@ -1,0 +1,110 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width")
+    title= "Book trading club"
+    link(href="/public/profile-style.css", rel="stylesheet" type="text/css")
+    link(href="/public/top-style.css", rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet")
+  include top.pug
+  //var pInfo = {fullname: 'John Doe', city: 'Beaverton', country: 'Johnland', history: [{type: 'req',  ownbookname:'Book11', name: 'Book5', username: 'Anonymous'}, {type: 'ownref', ownbookname:'Book11', name: 'Book6', username: 'Winnie-the-Pooh'}, {type: 'deal', ownbookname:'Bible', name: 'On the origin of Species', username: 'John the Librarian'}]};
+  //- var books = [{name: 'Book1 or some other book with a very long name', id: '1', username: 'John Doe', swaps: [{name: 'Book3', id: '3', username: 'Jane Doe'}]},{name: 'Book2', id: '2', username: 'John Doe', swaps: [{name: 'Book3', id: '3', username: 'Jane Doe'}, {name: 'Book4', id: '4', username: 'Jane Doe'}]}];
+  div(class="modal container-fluid" id="edit-pers-info")
+    div(class="modal-content")
+      div#pers-info-form
+        h4 Edit your personal info
+        form(action="/api/infoupdate" method="POST")
+          div.inputs  
+            label(for="edit-name") Full name
+            br
+            input(type="text" id="edit-name" name="editname" value= pInfo.fullname)
+            label(for="edit-city") City
+            br
+            input(type="text" id="edit-city" name="editcity" value= pInfo.city)
+            label(for="edit-country") Country
+            br
+            input(type="text" id="edit-country" name="editcountry" value= pInfo.country)
+          div.save-or-no
+            input(type="submit" class="btn btn-primary" class="save-canc-btn" value="Save")
+            button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="clickCancel()") Cancel
+  div(class="modal container-fluid" id="add-book")
+    div(class="modal-content")
+      div#add-book-form
+        h4 Add a book to your collection
+        form(action="/api/addbook" method="POST")
+          div.inputs
+            label(for="add-book-title") Book title
+            br
+            input(type="text" id="add-book-title" name="addbooktitle" placeholder="..." required="true" pattern=".*[A-Za-z]+.*")
+          div.save-or-no
+            input(type="submit" class="btn btn-primary" class="save-canc-btn" value="Save")
+            button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="clickCancel()") Cancel
+  div(class="modal container-fluid" id="delete-book")
+    div(class="modal-content")
+      div#delete-book-form
+        h4 Delete this book
+        h5 Are you sure you want to delete this book from your collection?
+      div.save-or-no
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="postDelete()") Delete
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="clickCancelDelete()") Cancel
+  div(class="modal container-fluid" id="accept-offer")
+    div(class="modal-content")
+      div#accept-offer-form
+        h4 Accept this offer
+        h5 Are you sure you want to accept this offer? All other offers for this book will be rejected.
+      div.save-or-no
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="postAccept()") Accept
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="clickCancelAccept()") Cancel
+  div(class="modal container-fluid" id="reject-offer")
+    div(class="modal-content")
+      div#reject-offer-form
+        h4 Reject this offer
+        h5 Are you sure you want to reject this offer?
+      div.save-or-no
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="postReject()") Reject
+        button(type="button" class="btn btn-primary" class="save-canc-btn" onclick="clickCancelReject()") Cancel
+  div.container-fluid#profile-wrapper
+    div.container-fluid#pers-info-wrapper
+      p#pers-info-title Personal info
+      div.container-fluid#pers-info
+        p Full name:
+          span  #{pInfo.fullname}
+        p City:
+          span  #{pInfo.city}
+        p Country:
+          span  #{pInfo.country}
+        button(type="button" id="edit-info" class="btn btn-primary" onclick="clickEdit()") Edit
+    div.container-fluid#books-history
+      div.container#books-wrapper
+        div#books-top
+          span#books-top-title Your books
+          button(type="button" id="add-book-btn" class="btn btn-primary" onclick="clickAddBook()") Add a book
+        div#books-list
+          ul
+            each val in books
+              li(id= val._id class="books-item")
+                i(class="fas fa-book")
+                span.book-name #{val.name}
+                button(type="button" class="btn btn-primary" class="del-btn" onclick="clickDeleteBook(event)") Delete
+                if val.swaps.length
+                  ul 
+                    span.swap-title Swap offers
+                    each book in val.swaps
+                      li(id= book._id)
+                        div.bullet
+                        span.books-item-offer #{book.name}, 
+                        span from #{book.username}
+                        div.offers
+                           button(type="button" class="btn btn-primary" class="accept-btn" onclick="clickAcceptOffer(event)") Accept
+                           button(type="button" class="btn btn-primary" class="reject-btn" onclick="clickRejectOffer(event)") Reject
+      div.container#history-wrapper
+        div#history-wrapper-title User history
+        div.list-pag
+          span(class="page-control" id="prev" onclick="showPage('back')") &laquo; Previous
+          span(class="page-control" id="next" onclick="showPage('forward')") Next &raquo;
+        ul#history-list
+  
+  script(src="/public/profile-script.js")
